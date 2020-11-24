@@ -1,9 +1,21 @@
-const counterReducer = (state = 0, action) => {
+const initialState = {
+  count: 0,
+  obj: {
+    count: 0
+  }
+}
+
+const counterReducer = (state = initialState, action) => {
     switch(action.type){
       case "INCREMENT":
-        return state + action.payload;
+        state.count += action.payload;
+        return state;
       case "DECREMENT":
-        return state - 1;
+        state.count -= 1;
+        return state;
+      case "NESTED":
+        state.obj.count += 1;
+        return state;
       default:
         return state;
     }

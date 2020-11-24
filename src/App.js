@@ -4,14 +4,15 @@ import { useSelector, useDispatch } from 'react-redux';
 import { increment, decrement, signIn } from './actions/index';
 
 function App() {
-  const counter = useSelector(state => state.counter)
+  const counter = useSelector(state => state.counter.count)
+  const nestedCount = useSelector(state => state.counter.obj.count)
   const isLogged = useSelector(state => state.isLogged)
 
   const dispatch = useDispatch();
   return (
     <div className="App">
       <h1>Intro to Redux in React</h1><br></br>
-      <h2>Counter: {counter}</h2>
+      <h2>Counter: {nestedCount}</h2>
       <button onClick={() => dispatch(increment(1))}>+</button>
       <button onClick={() => dispatch(decrement())}>-</button>
       <button onClick={() => dispatch(increment(2))}>+2</button>

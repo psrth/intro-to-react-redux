@@ -1,6 +1,6 @@
 export const increment = (step) => {
     return{
-      type: "INCREMENT",
+      type: "NESTED",
       payload: step
     }
   }
