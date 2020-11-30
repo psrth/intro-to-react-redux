@@ -1,24 +1,74 @@
-import React from 'react';
+import React, { useContext, createContext, useState } from 'react'
 import './App.css';
 import { useSelector, useDispatch } from 'react-redux';
-import { increment, decrement, signIn } from './actions/index';
+import { add, decrement, signIn } from './actions/index';
+import Home from './components/Home';
+import Add from './components/Add';
+import Blog from './components/Blog';
+
+import {
+  BrowserRouter as Router,
+  Route,
+  Switch,
+  Link,
+  Redirect
+} from 'react-router-dom'
+
 
 function App() {
-  const counter = useSelector(state => state.counter.count)
-  const nestedCount = useSelector(state => state.counter.obj.count)
-  const isLogged = useSelector(state => state.isLogged)
-
-  const dispatch = useDispatch();
   return (
     <div className="App">
-      <h1>Intro to Redux in React</h1><br></br>
-      <h2>Counter: {nestedCount}</h2>
-      <button onClick={() => dispatch(increment(1))}>+</button>
-      <button onClick={() => dispatch(decrement())}>-</button>
-      <button onClick={() => dispatch(increment(2))}>+2</button>
-      { isLogged ? <h2>Currently logged in.</h2> : <h2>Currently logged out.</h2>}
-      <button onClick={() => dispatch(signIn())}>Sign In/Sign Out</button>
+      
+
+      <Router>
+        <div style={{ display: 'flex', flexDirection: 'row'}}>
+        <h1 style={{fontSize: '26px', paddingRight: '500px'}}>Blog Post App — @psrth</h1><br></br>
+        <Link to="/">
+          <h3 style={{paddingRight: '20px'}}>Home</h3>
+        </Link>
+        <Link to="/add">
+          <h3 style={{paddingRight: '20px'}}>Add</h3>
+        </Link>
+        <Link to="/blog">
+          <h3 style={{paddingRight: '20px'}}>Blog</h3>
+        </Link>
+        </div>
+
+
+        <Switch>
+            <PrivateRoute path="/add">
+              <Add />
+            </PrivateRoute>
+            <PrivateRoute path="/blog">
+              <Blog />
+            </PrivateRoute>
+            <Route path="/">
+              <Home />
+            </Route>
+          </Switch>
+      </Router>      
     </div>
+  );
+}
+
+function PrivateRoute({ children }) {
+
+  const isLogged = useSelector(state => state.isLogged)
+
+  return (
+    <Route
+      render={() =>
+        isLogged ? (
+          children
+        ) : (
+          <Redirect
+            to={{
+              pathname: "/"
+            }}
+          />
+        )
+      }
+    />
   );
 }
 

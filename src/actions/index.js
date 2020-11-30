@@ -1,7 +1,10 @@
-export const increment = (step) => {
+export const add = (header1, body1) => {
     return{
-      type: "NESTED",
-      payload: step
+      type: "ADD",
+      payload: {
+        header: header1,
+        body: body1
+      }
     }
   }
   
