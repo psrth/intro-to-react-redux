@@ -19,17 +19,17 @@ function Add() {
     
     return(
       <div>
-        {/* <form>
+        <form>
           <label>
             Header 1:
-            <input type="text" name="header" onChange={() => setHeader={header}}/>
-          </label>
+            <input type="text"/>
+          </label><br></br>
           <label>
             Body:
-            <input type="text" onChange={() => setBody={value}}/>
-          </label>
-        </form> */}
-        <button onClick={() => dispatch(add(headerText, bodyText))}>Add Post</button>
+            <input type="text" />
+          </label><br></br>
+        </form><br></br><br></br>
+        <button onClick={() => dispatch(add(headerText, bodyText))}>Add Post</button><br></br>
       </div>
     )
 }

@@ -12,7 +12,14 @@ function Home() {
         <button onClick={() => console.log(allPosts)}>Console</button>
         <ul>
           {allPosts.map((value, index) => {
-            return <li key={index}>{value.header}<br></br>{value.body}<br></br><br></br></li>
+            return <li key={index}>
+              {value.header}
+              <br></br>
+              {value.body}
+              <br></br>
+              <button>Edit</button><button>Delete</button>
+              <br></br><br></br>
+              </li>
           })}
         </ul>
       </div>
