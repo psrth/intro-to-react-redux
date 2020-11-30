@@ -7,6 +7,16 @@ export const add = (header1, body1) => {
       }
     }
   }
+
+  export const del = (index1) => {
+    return{
+      type: "DEL",
+      payload: {
+        index: index1
+      }
+    }
+  }
+
   
 export const decrement = () => {
     return{

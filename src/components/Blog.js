@@ -10,6 +10,11 @@ function Home() {
     return(
       <div>
         <button onClick={() => console.log(allPosts)}>Console</button>
+        <ul>
+          {allPosts.map((value, index) => {
+            return <li key={index}>{value.header}<br></br>{value.body}<br></br><br></br></li>
+          })}
+        </ul>
       </div>
     )
 }
