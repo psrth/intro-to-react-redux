@@ -1,7 +1,7 @@
 import React from 'react';
 import '../App.css';
 import { useSelector, useDispatch } from 'react-redux';
-import { add, decrement, signIn } from '../actions/index';
+import { del } from '../actions/index';
 
 function Home() {
     const allPosts = useSelector(state => state.post.posts)
@@ -17,7 +17,9 @@ function Home() {
               <br></br>
               {value.body}
               <br></br>
-              <button>Edit</button><button>Delete</button>
+              
+              <button>Edit</button>
+              <button onClick={() => dispatch(del(value.id))}>Delete</button>
               <br></br><br></br>
               </li>
           })}

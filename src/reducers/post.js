@@ -25,7 +25,11 @@ const postReducer = (state = allPosts, action) => {
         state.posts.push(action.payload);
         return state;
       case "DEL":
-        state.posts.pop(action.payload, 1);
+        state.posts.forEach((element, index, array) => {
+          if (element.id === action.payload){
+            array.splice(index, 1)
+          }
+        });
         return state;
       case "NESTED":
         state.obj.count += 1;
